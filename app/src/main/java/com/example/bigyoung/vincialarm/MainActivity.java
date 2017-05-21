@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.support.v7.app.AppCompatActivity;
@@ -53,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         //设置对应图标
         mAlarmSwitch.setImageResource(mOpen_signal ==false?R.drawable.off:R.drawable.on);
         //set latest saving value
-        mRestingDuration.setText(PreferenceUtils.getString(MainActivity.this,Constants.REST_DURATION,20+""));
-        mWorkingDuration.setText(PreferenceUtils.getString(MainActivity.this,Constants.WORKING_DURATION,2+""));
+        mRestingDuration.setText(PreferenceUtils.getString(MainActivity.this,Constants.REST_DURATION,2+""));
+        mWorkingDuration.setText(PreferenceUtils.getString(MainActivity.this,Constants.WORKING_DURATION,20+""));
     }
 
     /**
@@ -162,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(context,
                 AlarmClockReciver.class);
         PendingIntent sender = PendingIntent.getBroadcast(
-                context, 0, intent, 0);
+                context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         // And cancel the alarm.
         AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         am.cancel(sender);
@@ -176,10 +177,32 @@ public class MainActivity extends AppCompatActivity {
     private static void sentClock(PendingIntent sender, int duration,Context context) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.add(Calendar.MINUTE, duration);
+        calendar.add(Calendar.SECOND, duration*60);
+
         // Schedule the alarm!
         AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+/*
         am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+*/
+
+        long timeInMillis=calendar.getTimeInMillis();
+        long interval=100;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //参数2是开始时间、参数3是允许系统延迟的时间
+            am.setWindow(AlarmManager.RTC_WAKEUP, timeInMillis, interval, sender);
+        } else {
+            am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+        }
+
+/*        //版本不同使用不同精度的延时函数
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M)
+        {
+            am.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,calendar.getTimeInMillis(),sender);
+        }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,calendar.getTimeInMillis(),sender);
+        }else{
+            am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,calendar.getTimeInMillis(),sender);
+        }*/
     }
 
     @Override
