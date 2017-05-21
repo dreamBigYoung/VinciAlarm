@@ -19,20 +19,23 @@ public class VibratorUtil {
      * boolean isRepeat ： 是否反复震动，如果是true，反复震动，如果是false，只震动一次
      */
 
-    public static void Vibrate(final Activity activity, long milliseconds) {
-        Vibrator vib = (Vibrator) activity.getSystemService(Service.VIBRATOR_SERVICE);
+    public static void Vibrate(long milliseconds) {
+        Context context = MyApplication.getContext();
+        Vibrator vib = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
         vib.vibrate(milliseconds);
     }
-    public static void Vibrate(final Activity activity, long[] pattern,boolean isRepeat) {
-        Vibrator vib = (Vibrator) activity.getSystemService(Service.VIBRATOR_SERVICE);
+    public static void Vibrate(long[] pattern, boolean isRepeat) {
+        Context context = MyApplication.getContext();
+        Vibrator vib = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
         vib.vibrate(pattern, isRepeat ? 2 : -1);
     }
 
     /**
      * 取消闹钟
      */
-    public static void cancelVibrate(final Activity activity){
-        Vibrator vib = (Vibrator) activity.getSystemService(Service.VIBRATOR_SERVICE);
+    public static void cancelVibrate(){
+        Context context = MyApplication.getContext();
+        Vibrator vib = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
         vib.cancel();
     }
 }

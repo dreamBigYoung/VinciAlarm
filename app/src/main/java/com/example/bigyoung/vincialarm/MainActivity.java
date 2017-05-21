@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 
 import com.example.bigyoung.vincialarm.broadcast.AlarmClockReciver;
 import com.example.bigyoung.vincialarm.utils.Constants;
+import com.example.bigyoung.vincialarm.utils.MyToast;
 import com.example.bigyoung.vincialarm.utils.PreferenceUtils;
 import com.example.bigyoung.vincialarm.wrap.SimpleTextWatcher;
 
@@ -179,5 +180,11 @@ public class MainActivity extends AppCompatActivity {
         // Schedule the alarm!
         AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyToast.show(MainActivity.this,"设置成功");
     }
 }
