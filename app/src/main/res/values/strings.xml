@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">VinciAlarm</string>
+    <string name="app_title">欢迎使用达芬奇工作闹钟</string>
+    <string name="text_size">20</string>
+    <string name="work_duration">工作时间:</string>
+    <string name="rest_duration">打盹时间:</string>
+</resources>
