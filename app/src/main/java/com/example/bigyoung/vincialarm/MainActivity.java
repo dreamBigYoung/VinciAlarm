@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
     private static void sentClock(PendingIntent sender, int duration,Context context) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.add(Calendar.SECOND, duration);
+        calendar.add(Calendar.MINUTE, duration);
         // Schedule the alarm!
         AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
