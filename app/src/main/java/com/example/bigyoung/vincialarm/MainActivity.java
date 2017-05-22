@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 mOpen_signal=!mOpen_signal;
                 if(mOpen_signal==true){
                     openClock();
+                    MyToast.show(MainActivity.this,"设置成功");
                 }else{
                     closeClock();
                 }
