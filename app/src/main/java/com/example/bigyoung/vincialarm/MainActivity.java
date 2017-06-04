@@ -18,6 +18,7 @@ import com.example.bigyoung.vincialarm.utils.Constants;
 import com.example.bigyoung.vincialarm.utils.MyToast;
 import com.example.bigyoung.vincialarm.utils.PreferenceUtils;
 import com.example.bigyoung.vincialarm.wrap.SimpleTextWatcher;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.Calendar;
 
@@ -43,6 +44,18 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initView();
         initEvent();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onPostResume();
+        MobclickAgent.onResume(MainActivity.this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     private void initView() {

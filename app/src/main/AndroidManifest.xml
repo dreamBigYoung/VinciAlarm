@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.bigyoung.vincialarm">
 
+    <uses-sdk android:minSdkVersion="16"></uses-sdk>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -30,6 +35,8 @@
 
         <receiver android:name=".broadcast.AlarmClockReciver">
         </receiver>
+        <meta-data android:value="59310df63eae251460001744" android:name="UMENG_APPKEY" />
+        <meta-data android:value="CaptainJack" android:name="UMENG_CHANNEL" />
     </application>
 
 </manifest>
