@@ -1,3 +1,8 @@
 # VinciAlarm
-alarm related Vinci time table
-![(https://raw.githubusercontent.com/dreamBigYoung/VinciAlarm/master/readmeimg/readme001.png)  
+Hi guys,听过达芬奇工作时间制吗？如果没听过，请耐住性子听在下娓娓道来。旷世奇才达芬奇为了保证作画时的精力，每隔20分钟他就会休息两分钟，
+然后让他的助手把他唤醒。达芬奇的寿命是67岁，以当时的医疗水平算是高寿。我尝试了达芬奇的工作时间制，发现很适合我，就是需要自己频繁的更改
+闹钟时间，为此写了一个app来实现
+![](https://raw.githubusercontent.com/dreamBigYoung/VinciAlarm/master/readmeimg/readme001.png) 
+如图所示 
+ 设置工作事件20，（单位是分钟），打盹时间2，点击开启按钮（变成绿色）那么20分钟后闹钟将响起，按掉闹钟后开始打盹休息，2分钟后再次响起,
+ 然后继续工作...依此循环下去，除非取消闹钟。退出activity然后再次进入也会取消闹钟
