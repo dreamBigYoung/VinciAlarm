@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
                 //切换状态
                 mOpen_signal=!mOpen_signal;
                 if(mOpen_signal==true){
+                    //重置当前周期状态
+                    CUR_CYCLE=Constants.WORKING_DURATION;
                     openClock();
                     MyToast.show(MainActivity.this,"设置成功");
                 }else{
