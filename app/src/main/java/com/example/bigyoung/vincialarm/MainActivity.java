@@ -222,6 +222,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MyToast.show(MainActivity.this,"设置成功");
+        if(mOpen_signal==true) {
+            MyToast.show(MainActivity.this, "设置成功");
+        }
     }
 }
